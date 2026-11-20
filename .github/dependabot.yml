@@ -9,6 +9,15 @@ updates:
     groups:
       lint-y-tipos:
         patterns: ['*']
+    ignore:
+      # typescript-eslint declara soporte hasta una versión concreta de TypeScript (peer
+      # dependency): un major nuevo rompe `npm ci` hasta que typescript-eslint lo soporte.
+      # Se actualiza a mano cuando ambos sean compatibles.
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']
+      # Los tipos de Node deben seguir la versión de Node de CI (24), no la última publicada.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
 
   - package-ecosystem: github-actions
     directory: /
