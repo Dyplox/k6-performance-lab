@@ -1,0 +1,6 @@
+node_modules/
+# Salidas de handleSummary: se publican como artefactos de CI, no se versionan.
+reports/*
+!reports/.gitkeep
+.env
+*.log

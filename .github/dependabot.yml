@@ -1,0 +1,27 @@
+# Actualizaciones automáticas de dependencias: cada lunes abre PRs que el smoke valida.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      lint-y-tipos:
+        patterns: ['*']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ['*']
+
+  # Imágenes de docker-compose.yml (Restful Booker por digest, Prometheus, Grafana, cAdvisor, k6).
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday

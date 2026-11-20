@@ -1,0 +1,107 @@
+# Laboratorio de rendimiento: sistema bajo prueba + observabilidad + k6, todo local y sin costo.
+#
+#   docker compose up -d --wait restful-booker                 # solo el SUT (lo que usa CI)
+#   docker compose --profile observability up -d --wait       # + Prometheus y Grafana (http://localhost:3000)
+#   docker compose --profile observability --profile cadvisor up -d   # + CPU/memoria del contenedor (solo Linux)
+#   docker compose run --rm k6 run src/tests/smoke.ts          # k6 en contenedor, sin instalar nada
+#   docker compose --profile observability --profile cadvisor down
+name: k6-performance-lab
+
+services:
+  # Misma imagen y digest que RESTFUL_BOOKERING: las pruebas no cambian si se publica otra "latest".
+  # Solo existe para amd64; en Mac con ARM corre emulada (más lenta: no compares esos números con CI).
+  restful-booker:
+    image: mwinteringham/restfulbooker:latest@sha256:a87ae093264caf64cad2557256921cbdb1fec466d6356b5e140e3f060b904f04
+    platform: linux/amd64
+    ports:
+      - '3001:3001'
+    # /ping responde 201 cuando la API está lista. Se usa Node porque la imagen no garantiza curl/wget.
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "require('http').get('http://localhost:3001/ping', r => process.exit(r.statusCode === 201 ? 0 : 1)).on('error', () => process.exit(1))"
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+    # Límites fijos: hacen comparables las ejecuciones y permiten ver la saturación en estrés.
+    cpus: 1.0
+    mem_limit: 512m
+
+  prometheus:
+    image: prom/prometheus:v3.16.0
+    profiles: [observability]
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=7d
+      # k6 envía las métricas por remote write (push); no hay que hacerle scrape.
+      - --web.enable-remote-write-receiver
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - '9090:9090'
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '-O', '-', 'http://localhost:9090/-/ready']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  grafana:
+    image: grafana/grafana:13.3.1
+    profiles: [observability]
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    environment:
+      # Solo para uso local: entra sin login con rol de administrador.
+      GF_AUTH_ANONYMOUS_ENABLED: 'true'
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_AUTH_DISABLE_LOGIN_FORM: 'true'
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/k6-restful-booker.json
+    volumes:
+      - ./infra/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infra/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - '3000:3000'
+
+  # Opcional: CPU y memoria del contenedor bajo prueba. Necesita un host Linux con Docker
+  # (en Docker Desktop de Windows/Mac solo funciona de forma parcial).
+  cadvisor:
+    image: ghcr.io/google/cadvisor:v0.61.1
+    profiles: [cadvisor]
+    privileged: true
+    devices:
+      - /dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    ports:
+      - '8080:8080'
+
+  # k6 en contenedor para quien no lo tenga instalado. Misma versión que CI.
+  k6:
+    image: grafana/k6:2.4.0
+    profiles: [k6]
+    depends_on:
+      restful-booker:
+        condition: service_healthy
+    # En Linux, escribe los reportes con tu usuario y no como el usuario interno de la imagen.
+    user: '${UID:-1000}:${GID:-1000}'
+    working_dir: /work
+    volumes:
+      - .:/work
+    environment:
+      BASE_URL: http://restful-booker:3001
+      K6_PROMETHEUS_RW_SERVER_URL: http://prometheus:9090/api/v1/write
+      K6_PROMETHEUS_RW_TREND_AS_NATIVE_HISTOGRAM: 'true'
+    ports:
+      - '5665:5665'
+
+volumes:
+  prometheus-data:

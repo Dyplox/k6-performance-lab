@@ -1,0 +1,12 @@
+# Carga los dashboards JSON de infra/grafana/dashboards al arrancar Grafana.
+# Los cambios hechos en la UI no se guardan: se editan en el JSON y se versionan (dashboards as code).
+apiVersion: 1
+providers:
+  - name: k6-performance-lab
+    folder: k6
+    type: file
+    disableDeletion: true
+    allowUiUpdates: false
+    options:
+      path: /var/lib/grafana/dashboards
+      foldersFromFilesStructure: false

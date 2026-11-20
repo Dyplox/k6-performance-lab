@@ -1,0 +1,19 @@
+# k6 empuja sus métricas por remote write (/api/v1/write), así que no aparece aquí como target.
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Solo responde si se levantó el perfil "cadvisor"; si no, el target queda en "down" sin afectar nada.
+  - job_name: cadvisor
+    static_configs:
+      - targets: ['cadvisor:8080']
+    metric_relabel_configs:
+      # Solo interesan los contenedores de este proyecto: evita guardar series de todo el host.
+      - source_labels: [name]
+        regex: 'k6-performance-lab-.*'
+        action: keep

@@ -1,0 +1,38 @@
+{
+  "name": "k6-performance-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pruebas de rendimiento con k6 + TypeScript sobre Restful Booker, con SLOs, Grafana as code y línea base",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -p tsconfig.json && tsc -p scripts/tsconfig.json",
+    "test": "node --test scripts/compare-baseline.test.ts",
+    "verify": "npm run lint && npm run format:check && npm run typecheck && npm test",
+    "smoke": "k6 run src/tests/smoke.ts",
+    "load": "k6 run src/tests/load.ts",
+    "stress": "k6 run src/tests/stress.ts",
+    "spike": "k6 run src/tests/spike.ts",
+    "soak": "k6 run src/tests/soak.ts",
+    "k6:obs": "cross-env K6_PROMETHEUS_RW_TREND_AS_NATIVE_HISTOGRAM=true k6 run -o experimental-prometheus-rw",
+    "baseline:compare": "node scripts/compare-baseline.ts",
+    "baseline:update": "node scripts/compare-baseline.ts --update"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/k6": "^2.3.1",
+    "@types/node": "^24.19.2",
+    "cross-env": "^10.1.0",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.73.0"
+  }
+}
