@@ -1,0 +1,79 @@
+name: PR · smoke
+
+# En cada PR y push a main: verificación estática + smoke de ~30 s con los SLOs como thresholds.
+# Si un threshold se incumple, k6 termina con código 99 y el job falla: el PR no se puede fusionar
+# si la rama de main está protegida con este check como requerido.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: smoke-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  K6_VERSION: 2.4.0
+  K6_NO_USAGE_REPORT: 'true'
+
+# Las actions están fijadas por SHA (con la versión en el comentario); Dependabot las actualiza.
+jobs:
+  estatico:
+    name: Lint, formato, tipos y unitarias
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: ESLint, Prettier, tsc y pruebas de compare-baseline
+        run: npm run verify
+
+  smoke:
+    name: Smoke con SLOs
+    needs: estatico
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Levantar Restful Booker (espera al healthcheck)
+        run: docker compose up -d --wait restful-booker
+
+      - uses: grafana/setup-k6-action@c47136d33d365efbeb9ae7266908b5dcf98cdece # v1.3.0
+        with:
+          k6-version: ${{ env.K6_VERSION }}
+
+      - name: Smoke
+        run: k6 run src/tests/smoke.ts
+        env:
+          TEST_ID: smoke-${{ github.run_id }}
+
+      - name: Resumen en la pestaña Summary
+        if: always()
+        run: cat reports/smoke-summary.md >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || echo "k6 no generó resumen" >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: smoke-report
+          path: reports/
+          retention-days: 14
+
+      - name: Logs del SUT
+        if: failure()
+        run: docker compose logs --tail 200 restful-booker
+
+      - name: Apagar el SUT
+        if: always()
+        run: docker compose down

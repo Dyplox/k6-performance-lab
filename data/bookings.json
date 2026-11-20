@@ -1,0 +1,662 @@
+[
+  {
+    "firstname": "Abel",
+    "lastname": "Gutiérrez",
+    "totalprice": 80,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-01-05",
+      "checkout": "2027-01-06"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  {
+    "firstname": "Laura",
+    "lastname": "Ospina",
+    "totalprice": 117,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-01-12",
+      "checkout": "2027-01-16"
+    },
+    "additionalneeds": "Late checkout"
+  },
+  {
+    "firstname": "Santiago",
+    "lastname": "Arias",
+    "totalprice": 154,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-01-19",
+      "checkout": "2027-01-26"
+    },
+    "additionalneeds": "Airport transfer"
+  },
+  {
+    "firstname": "Valentina",
+    "lastname": "Arango",
+    "totalprice": 191,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-01-26",
+      "checkout": "2027-01-27"
+    },
+    "additionalneeds": "Extra bed"
+  },
+  {
+    "firstname": "Andrés",
+    "lastname": "Muñoz",
+    "totalprice": 228,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-02-02",
+      "checkout": "2027-02-06"
+    },
+    "additionalneeds": "Parking"
+  },
+  {
+    "firstname": "Camila",
+    "lastname": "Cardona",
+    "totalprice": 265,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-02-09",
+      "checkout": "2027-02-16"
+    },
+    "additionalneeds": "None"
+  },
+  {
+    "firstname": "Julián",
+    "lastname": "Correa",
+    "totalprice": 302,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-02-16",
+      "checkout": "2027-02-17"
+    },
+    "additionalneeds": "Dinner"
+  },
+  {
+    "firstname": "Mariana",
+    "lastname": "Londoño",
+    "totalprice": 339,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-02-23",
+      "checkout": "2027-02-27"
+    },
+    "additionalneeds": "Early checkin"
+  },
+  {
+    "firstname": "Felipe",
+    "lastname": "Jaramillo",
+    "totalprice": 376,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-03-02",
+      "checkout": "2027-03-09"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  {
+    "firstname": "Daniela",
+    "lastname": "Zapata",
+    "totalprice": 413,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-03-09",
+      "checkout": "2027-03-10"
+    },
+    "additionalneeds": "Late checkout"
+  },
+  {
+    "firstname": "Sebastián",
+    "lastname": "Henao",
+    "totalprice": 450,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-03-16",
+      "checkout": "2027-03-20"
+    },
+    "additionalneeds": "Airport transfer"
+  },
+  {
+    "firstname": "Paula",
+    "lastname": "Ramírez",
+    "totalprice": 487,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-03-23",
+      "checkout": "2027-03-30"
+    },
+    "additionalneeds": "Extra bed"
+  },
+  {
+    "firstname": "Mateo",
+    "lastname": "Montoya",
+    "totalprice": 524,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-03-30",
+      "checkout": "2027-03-31"
+    },
+    "additionalneeds": "Parking"
+  },
+  {
+    "firstname": "Isabella",
+    "lastname": "Restrepo",
+    "totalprice": 561,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-04-06",
+      "checkout": "2027-04-10"
+    },
+    "additionalneeds": "None"
+  },
+  {
+    "firstname": "Juan",
+    "lastname": "Vélez",
+    "totalprice": 598,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-04-13",
+      "checkout": "2027-04-20"
+    },
+    "additionalneeds": "Dinner"
+  },
+  {
+    "firstname": "Sara",
+    "lastname": "Gutiérrez",
+    "totalprice": 635,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-04-20",
+      "checkout": "2027-04-21"
+    },
+    "additionalneeds": "Early checkin"
+  },
+  {
+    "firstname": "Tomás",
+    "lastname": "Ospina",
+    "totalprice": 672,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-04-27",
+      "checkout": "2027-05-01"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  {
+    "firstname": "Manuela",
+    "lastname": "Arias",
+    "totalprice": 709,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-05-04",
+      "checkout": "2027-05-11"
+    },
+    "additionalneeds": "Late checkout"
+  },
+  {
+    "firstname": "Nicolás",
+    "lastname": "Arango",
+    "totalprice": 746,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-05-11",
+      "checkout": "2027-05-12"
+    },
+    "additionalneeds": "Airport transfer"
+  },
+  {
+    "firstname": "Luisa",
+    "lastname": "Muñoz",
+    "totalprice": 783,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-05-18",
+      "checkout": "2027-05-22"
+    },
+    "additionalneeds": "Extra bed"
+  },
+  {
+    "firstname": "Abel",
+    "lastname": "Cardona",
+    "totalprice": 820,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-05-25",
+      "checkout": "2027-06-01"
+    },
+    "additionalneeds": "Parking"
+  },
+  {
+    "firstname": "Laura",
+    "lastname": "Correa",
+    "totalprice": 857,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-06-01",
+      "checkout": "2027-06-02"
+    },
+    "additionalneeds": "None"
+  },
+  {
+    "firstname": "Santiago",
+    "lastname": "Londoño",
+    "totalprice": 894,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-06-08",
+      "checkout": "2027-06-12"
+    },
+    "additionalneeds": "Dinner"
+  },
+  {
+    "firstname": "Valentina",
+    "lastname": "Jaramillo",
+    "totalprice": 931,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-06-15",
+      "checkout": "2027-06-22"
+    },
+    "additionalneeds": "Early checkin"
+  },
+  {
+    "firstname": "Andrés",
+    "lastname": "Zapata",
+    "totalprice": 968,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-06-22",
+      "checkout": "2027-06-23"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  {
+    "firstname": "Camila",
+    "lastname": "Henao",
+    "totalprice": 85,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-06-29",
+      "checkout": "2027-07-03"
+    },
+    "additionalneeds": "Late checkout"
+  },
+  {
+    "firstname": "Julián",
+    "lastname": "Ramírez",
+    "totalprice": 122,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-07-06",
+      "checkout": "2027-07-13"
+    },
+    "additionalneeds": "Airport transfer"
+  },
+  {
+    "firstname": "Mariana",
+    "lastname": "Montoya",
+    "totalprice": 159,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-07-13",
+      "checkout": "2027-07-14"
+    },
+    "additionalneeds": "Extra bed"
+  },
+  {
+    "firstname": "Felipe",
+    "lastname": "Restrepo",
+    "totalprice": 196,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-07-20",
+      "checkout": "2027-07-24"
+    },
+    "additionalneeds": "Parking"
+  },
+  {
+    "firstname": "Daniela",
+    "lastname": "Vélez",
+    "totalprice": 233,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-07-27",
+      "checkout": "2027-08-03"
+    },
+    "additionalneeds": "None"
+  },
+  {
+    "firstname": "Sebastián",
+    "lastname": "Gutiérrez",
+    "totalprice": 270,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-08-03",
+      "checkout": "2027-08-04"
+    },
+    "additionalneeds": "Dinner"
+  },
+  {
+    "firstname": "Paula",
+    "lastname": "Ospina",
+    "totalprice": 307,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-08-10",
+      "checkout": "2027-08-14"
+    },
+    "additionalneeds": "Early checkin"
+  },
+  {
+    "firstname": "Mateo",
+    "lastname": "Arias",
+    "totalprice": 344,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-08-17",
+      "checkout": "2027-08-24"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  {
+    "firstname": "Isabella",
+    "lastname": "Arango",
+    "totalprice": 381,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-08-24",
+      "checkout": "2027-08-25"
+    },
+    "additionalneeds": "Late checkout"
+  },
+  {
+    "firstname": "Juan",
+    "lastname": "Muñoz",
+    "totalprice": 418,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-08-31",
+      "checkout": "2027-09-04"
+    },
+    "additionalneeds": "Airport transfer"
+  },
+  {
+    "firstname": "Sara",
+    "lastname": "Cardona",
+    "totalprice": 455,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-09-07",
+      "checkout": "2027-09-14"
+    },
+    "additionalneeds": "Extra bed"
+  },
+  {
+    "firstname": "Tomás",
+    "lastname": "Correa",
+    "totalprice": 492,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-09-14",
+      "checkout": "2027-09-15"
+    },
+    "additionalneeds": "Parking"
+  },
+  {
+    "firstname": "Manuela",
+    "lastname": "Londoño",
+    "totalprice": 529,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-09-21",
+      "checkout": "2027-09-25"
+    },
+    "additionalneeds": "None"
+  },
+  {
+    "firstname": "Nicolás",
+    "lastname": "Jaramillo",
+    "totalprice": 566,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-09-28",
+      "checkout": "2027-10-05"
+    },
+    "additionalneeds": "Dinner"
+  },
+  {
+    "firstname": "Luisa",
+    "lastname": "Zapata",
+    "totalprice": 603,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-10-05",
+      "checkout": "2027-10-06"
+    },
+    "additionalneeds": "Early checkin"
+  },
+  {
+    "firstname": "Abel",
+    "lastname": "Henao",
+    "totalprice": 640,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-10-12",
+      "checkout": "2027-10-16"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  {
+    "firstname": "Laura",
+    "lastname": "Ramírez",
+    "totalprice": 677,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-10-19",
+      "checkout": "2027-10-26"
+    },
+    "additionalneeds": "Late checkout"
+  },
+  {
+    "firstname": "Santiago",
+    "lastname": "Montoya",
+    "totalprice": 714,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-10-26",
+      "checkout": "2027-10-27"
+    },
+    "additionalneeds": "Airport transfer"
+  },
+  {
+    "firstname": "Valentina",
+    "lastname": "Restrepo",
+    "totalprice": 751,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-01-06",
+      "checkout": "2027-01-10"
+    },
+    "additionalneeds": "Extra bed"
+  },
+  {
+    "firstname": "Andrés",
+    "lastname": "Vélez",
+    "totalprice": 788,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-01-13",
+      "checkout": "2027-01-20"
+    },
+    "additionalneeds": "Parking"
+  },
+  {
+    "firstname": "Camila",
+    "lastname": "Gutiérrez",
+    "totalprice": 825,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-01-20",
+      "checkout": "2027-01-21"
+    },
+    "additionalneeds": "None"
+  },
+  {
+    "firstname": "Julián",
+    "lastname": "Ospina",
+    "totalprice": 862,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-01-27",
+      "checkout": "2027-01-31"
+    },
+    "additionalneeds": "Dinner"
+  },
+  {
+    "firstname": "Mariana",
+    "lastname": "Arias",
+    "totalprice": 899,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-02-03",
+      "checkout": "2027-02-10"
+    },
+    "additionalneeds": "Early checkin"
+  },
+  {
+    "firstname": "Felipe",
+    "lastname": "Arango",
+    "totalprice": 936,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-02-10",
+      "checkout": "2027-02-11"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  {
+    "firstname": "Daniela",
+    "lastname": "Muñoz",
+    "totalprice": 973,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-02-17",
+      "checkout": "2027-02-21"
+    },
+    "additionalneeds": "Late checkout"
+  },
+  {
+    "firstname": "Sebastián",
+    "lastname": "Cardona",
+    "totalprice": 90,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-02-24",
+      "checkout": "2027-03-03"
+    },
+    "additionalneeds": "Airport transfer"
+  },
+  {
+    "firstname": "Paula",
+    "lastname": "Correa",
+    "totalprice": 127,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-03-03",
+      "checkout": "2027-03-04"
+    },
+    "additionalneeds": "Extra bed"
+  },
+  {
+    "firstname": "Mateo",
+    "lastname": "Londoño",
+    "totalprice": 164,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-03-10",
+      "checkout": "2027-03-14"
+    },
+    "additionalneeds": "Parking"
+  },
+  {
+    "firstname": "Isabella",
+    "lastname": "Jaramillo",
+    "totalprice": 201,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-03-17",
+      "checkout": "2027-03-24"
+    },
+    "additionalneeds": "None"
+  },
+  {
+    "firstname": "Juan",
+    "lastname": "Zapata",
+    "totalprice": 238,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-03-24",
+      "checkout": "2027-03-25"
+    },
+    "additionalneeds": "Dinner"
+  },
+  {
+    "firstname": "Sara",
+    "lastname": "Henao",
+    "totalprice": 275,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-03-31",
+      "checkout": "2027-04-04"
+    },
+    "additionalneeds": "Early checkin"
+  },
+  {
+    "firstname": "Tomás",
+    "lastname": "Ramírez",
+    "totalprice": 312,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-04-07",
+      "checkout": "2027-04-14"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  {
+    "firstname": "Manuela",
+    "lastname": "Montoya",
+    "totalprice": 349,
+    "depositpaid": false,
+    "bookingdates": {
+      "checkin": "2027-04-14",
+      "checkout": "2027-04-15"
+    },
+    "additionalneeds": "Late checkout"
+  },
+  {
+    "firstname": "Nicolás",
+    "lastname": "Restrepo",
+    "totalprice": 386,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-04-21",
+      "checkout": "2027-04-25"
+    },
+    "additionalneeds": "Airport transfer"
+  },
+  {
+    "firstname": "Luisa",
+    "lastname": "Vélez",
+    "totalprice": 423,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2027-04-28",
+      "checkout": "2027-05-05"
+    },
+    "additionalneeds": "Extra bed"
+  }
+]

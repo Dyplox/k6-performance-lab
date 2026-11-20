@@ -1,0 +1,22 @@
+{
+  // Código de k6. k6 ejecuta TypeScript directamente (quita los tipos con esbuild) pero no los
+  // verifica: este tsconfig solo sirve para `npm run typecheck` y el editor.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "types": ["k6"]
+  },
+  "include": ["src/**/*.ts"]
+}

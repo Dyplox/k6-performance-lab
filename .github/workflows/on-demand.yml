@@ -1,0 +1,96 @@
+name: Bajo demanda (estrés, picos, resistencia)
+
+# Pruebas que solo se lanzan a mano: son más largas o agresivas y no aportan nada corriendo solas.
+# Los perfiles por defecto son cortos (2-5 min); para una ejecución real se escalan con time_scale.
+#   soak de 4 h:   test_type=soak, time_scale=48
+#   estrés ×2:     test_type=stress, load_scale=2
+on:
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Tipo de prueba'
+        type: choice
+        options: [stress, spike, soak, load]
+        default: stress
+      time_scale:
+        description: 'TIME_SCALE: multiplica la duración del perfil'
+        default: '1'
+      load_scale:
+        description: 'LOAD_SCALE: multiplica la tasa de llegada'
+        default: '1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: on-demand-${{ inputs.test_type }}
+  cancel-in-progress: false
+
+env:
+  K6_VERSION: 2.4.0
+  K6_NO_USAGE_REPORT: 'true'
+
+jobs:
+  prueba:
+    name: ${{ inputs.test_type }} (TIME_SCALE=${{ inputs.time_scale }}, LOAD_SCALE=${{ inputs.load_scale }})
+    runs-on: ubuntu-latest
+    # Límite de GitHub para un job: 6 h. Un soak más largo debe correr en local.
+    timeout-minutes: 360
+    env:
+      TEST_TYPE: ${{ inputs.test_type }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      - name: Levantar Restful Booker (espera al healthcheck)
+        run: docker compose up -d --wait restful-booker
+
+      - uses: grafana/setup-k6-action@c47136d33d365efbeb9ae7266908b5dcf98cdece # v1.3.0
+        with:
+          k6-version: ${{ env.K6_VERSION }}
+
+      - name: Prueba
+        id: k6
+        continue-on-error: true
+        run: k6 run "src/tests/${TEST_TYPE}.ts"
+        env:
+          TEST_ID: ${{ inputs.test_type }}-${{ github.run_id }}
+          TIME_SCALE: ${{ inputs.time_scale }}
+          LOAD_SCALE: ${{ inputs.load_scale }}
+
+      - name: Resumen en la pestaña Summary
+        if: always()
+        run: cat "reports/${TEST_TYPE}-summary.md" >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || echo "k6 no generó resumen" >> "$GITHUB_STEP_SUMMARY"
+
+      # Solo compara si existe baselines/<tipo>.json y la ejecución usa el mismo perfil.
+      - name: Comparar con la línea base
+        id: baseline
+        continue-on-error: true
+        run: node scripts/compare-baseline.ts --type "$TEST_TYPE"
+
+      - name: Estado del SUT al terminar
+        if: always()
+        run: |
+          docker compose ps
+          docker stats --no-stream
+          docker compose logs --tail 100 restful-booker
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: ${{ inputs.test_type }}-report
+          path: reports/
+          retention-days: 30
+
+      - name: Apagar el SUT
+        if: always()
+        run: docker compose down
+
+      - name: Resultado
+        if: steps.k6.outcome == 'failure' || steps.baseline.outcome == 'failure'
+        run: |
+          echo "::error::SLOs incumplidos (k6: ${{ steps.k6.outcome }}) o regresión contra la línea base (${{ steps.baseline.outcome }})"
+          exit 1
