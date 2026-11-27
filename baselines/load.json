@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "testType": "load",
+  "testId": "load-45270326284",
+  "finishedAt": "2026-11-23T21:32:35.596Z",
+  "durationSeconds": 106.3,
+  "gitSha": "4a5b788b76bbe3be9516dbb853ef69a90088e2f5",
+  "config": {
+    "baseUrl": "http://localhost:3001",
+    "timeScale": 1,
+    "loadScale": 1,
+    "thinkTime": 1
+  },
+  "thresholdsPassed": true,
+  "thresholds": [
+    {
+      "metric": "checks",
+      "expression": "rate>0.99",
+      "ok": true
+    },
+    {
+      "metric": "crud_flow_server_time",
+      "expression": "p(95)<2000",
+      "ok": true
+    },
+    {
+      "metric": "dropped_iterations",
+      "expression": "count<10",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration",
+      "expression": "p(95)<500",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration",
+      "expression": "p(99)<1000",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration{name:auth}",
+      "expression": "p(95)<400",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration{name:booking_create}",
+      "expression": "p(95)<400",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration{name:booking_delete}",
+      "expression": "p(95)<400",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration{name:booking_detail}",
+      "expression": "p(95)<300",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration{name:booking_list}",
+      "expression": "p(95)<400",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration{name:booking_patch}",
+      "expression": "p(95)<400",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration{name:booking_read_deleted}",
+      "expression": "p(95)<300",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration{name:booking_read}",
+      "expression": "p(95)<300",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration{name:booking_search}",
+      "expression": "p(95)<400",
+      "ok": true
+    },
+    {
+      "metric": "http_req_duration{name:booking_update}",
+      "expression": "p(95)<400",
+      "ok": true
+    },
+    {
+      "metric": "http_req_failed",
+      "expression": "rate<0.01",
+      "ok": true
+    },
+    {
+      "metric": "http_reqs{name:booking_create}",
+      "expression": "count>0",
+      "ok": true
+    },
+    {
+      "metric": "http_reqs{name:booking_delete}",
+      "expression": "count>0",
+      "ok": true
+    },
+    {
+      "metric": "http_reqs{name:booking_list}",
+      "expression": "count>0",
+      "ok": true
+    },
+    {
+      "metric": "http_reqs{name:booking_patch}",
+      "expression": "count>0",
+      "ok": true
+    },
+    {
+      "metric": "http_reqs{name:booking_read_deleted}",
+      "expression": "count>0",
+      "ok": true
+    },
+    {
+      "metric": "http_reqs{name:booking_read}",
+      "expression": "count>0",
+      "ok": true
+    },
+    {
+      "metric": "http_reqs{name:booking_search}",
+      "expression": "count>0",
+      "ok": true
+    },
+    {
+      "metric": "http_reqs{name:booking_update}",
+      "expression": "count>0",
+      "ok": true
+    }
+  ],
+  "totals": {
+    "requests": 2883,
+    "requestsPerSecond": 27.11,
+    "iterations": 822,
+    "droppedIterations": 2,
+    "errorRate": 0,
+    "checksRate": 1
+  },
+  "latency": {
+    "avg": 0.73,
+    "med": 0.67,
+    "p90": 1.03,
+    "p95": 1.17,
+    "p99": 1.79,
+    "max": 8.38,
+    "count": 2883
+  },
+  "endpoints": {
+    "booking_patch": {
+      "avg": 0.56,
+      "med": 0.53,
+      "p90": 0.74,
+      "p95": 0.81,
+      "p99": 1.01,
+      "max": 1.19,
+      "count": 245
+    },
+    "auth": {
+      "avg": 2.59,
+      "med": 1.83,
+      "p90": 4.7,
+      "p95": 6.18,
+      "p99": 7.94,
+      "max": 8.38,
+      "count": 13
+    },
+    "booking_read": {
+      "avg": 0.75,
+      "med": 0.72,
+      "p90": 1.03,
+      "p95": 1.12,
+      "p99": 1.34,
+      "max": 1.5,
+      "count": 245
+    },
+    "booking_delete": {
+      "avg": 0.64,
+      "med": 0.62,
+      "p90": 0.86,
+      "p95": 0.96,
+      "p99": 1.07,
+      "max": 1.5,
+      "count": 245
+    },
+    "booking_read_deleted": {
+      "avg": 0.53,
+      "med": 0.49,
+      "p90": 0.71,
+      "p95": 0.79,
+      "p99": 1.06,
+      "max": 1.69,
+      "count": 245
+    },
+    "booking_detail": {
+      "avg": 0.75,
+      "med": 0.72,
+      "p90": 1.03,
+      "p95": 1.12,
+      "p99": 1.37,
+      "max": 3.55,
+      "count": 577
+    },
+    "booking_update": {
+      "avg": 0.85,
+      "med": 0.81,
+      "p90": 1.08,
+      "p95": 1.19,
+      "p99": 1.79,
+      "max": 4.94,
+      "count": 245
+    },
+    "booking_search": {
+      "avg": 0.54,
+      "med": 0.48,
+      "p90": 0.66,
+      "p95": 0.78,
+      "p99": 1.09,
+      "max": 3.29,
+      "count": 245
+    },
+    "booking_create": {
+      "avg": 0.82,
+      "med": 0.8,
+      "p90": 1.08,
+      "p95": 1.18,
+      "p99": 1.45,
+      "max": 2.43,
+      "count": 245
+    },
+    "booking_list": {
+      "avg": 0.84,
+      "med": 0.78,
+      "p90": 1.2,
+      "p95": 1.34,
+      "p99": 2.02,
+      "max": 4.59,
+      "count": 577
+    }
+  },
+  "checks": [
+    {
+      "name": "auth: status 200",
+      "passes": 12,
+      "fails": 0
+    },
+    {
+      "name": "auth: devuelve token",
+      "passes": 12,
+      "fails": 0
+    },
+    {
+      "name": "listar: status 200",
+      "passes": 577,
+      "fails": 0
+    },
+    {
+      "name": "listar: devuelve un arreglo",
+      "passes": 577,
+      "fails": 0
+    },
+    {
+      "name": "detalle: status 200 o 404 por carrera",
+      "passes": 577,
+      "fails": 0
+    },
+    {
+      "name": "detalle: trae nombre si existe",
+      "passes": 577,
+      "fails": 0
+    },
+    {
+      "name": "crear: status 200",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "crear: devuelve bookingid",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "crear: refleja los datos enviados",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "leer: status 200",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "leer: es la reserva creada",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "buscar: status 200",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "buscar: encuentra la reserva",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "actualizar: status 200",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "actualizar: aplica el nuevo precio",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "parchar: status 200",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "parchar: cambia solo el campo enviado",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "borrar: status 201",
+      "passes": 245,
+      "fails": 0
+    },
+    {
+      "name": "borrar: la reserva ya no existe (404)",
+      "passes": 245,
+      "fails": 0
+    }
+  ]
+}
