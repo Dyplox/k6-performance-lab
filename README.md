@@ -243,7 +243,9 @@ Decisiones:
 Para modificar el dashboard, edita el JSON y reinicia Grafana. Los cambios hechos en la UI no se
 guardan, a propósito.
 
-<!-- Capturas: guardar en docs/img/ y enlazarlas aquí, p. ej. ![Dashboard en carga](docs/img/dashboard-load.png) -->
+![Dashboard de Grafana durante la prueba de carga](docs/img/dashboard-load.png)
+
+_Prueba de carga por defecto (~2 min, 10 it/s) con k6 2.4.0 contra el SUT en Docker: rampa, meseta y bajada; p95 de 2,8 ms y 0 % de errores._
 
 ## Estructura
 
