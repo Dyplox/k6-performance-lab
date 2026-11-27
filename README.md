@@ -1,7 +1,7 @@
 # k6-performance-lab
 
 [![PR · smoke](https://github.com/Dyplox/k6-performance-lab/actions/workflows/pr-smoke.yml/badge.svg)](https://github.com/Dyplox/k6-performance-lab/actions/workflows/pr-smoke.yml)
-[![Carga programada](https://github.com/Dyplox/k6-performance-lab/actions/workflows/load.yml/badge.svg)](https://github.com/Dyplox/k6-performance-lab/actions/workflows/load.yml)
+[![Carga](https://github.com/Dyplox/k6-performance-lab/actions/workflows/load.yml/badge.svg)](https://github.com/Dyplox/k6-performance-lab/actions/workflows/load.yml)
 
 Laboratorio de pruebas de rendimiento con **k6 + TypeScript** sobre la API de reservas
 [Restful Booker](https://restful-booker.herokuapp.com/apidoc/index.html), que corre en Docker junto
@@ -74,7 +74,7 @@ docker compose --profile observability down
 | Prueba      | Archivo               | Executor               | Perfil por defecto                        | Duración | Dónde corre           |
 | ----------- | --------------------- | ---------------------- | ----------------------------------------- | -------: | --------------------- |
 | Smoke       | `src/tests/smoke.ts`  | `constant-vus`         | 1 VU por flujo                            |     30 s | Cada PR y push a main |
-| Carga       | `src/tests/load.ts`   | `ramping-arrival-rate` | 0 → 10 it/s, sostiene, baja               |   ~2 min | Semanal + manual      |
+| Carga       | `src/tests/load.ts`   | `ramping-arrival-rate` | 0 → 10 it/s, sostiene, baja               |   ~2 min | Manual                |
 | Estrés      | `src/tests/stress.ts` | `ramping-arrival-rate` | Escalones 10 → 20 → 30 → 40 it/s          |   ~2 min | Manual                |
 | Picos       | `src/tests/spike.ts`  | `ramping-arrival-rate` | 2 → 40 it/s en 5 s, sostiene y vuelve a 2 | ~1.5 min | Manual                |
 | Resistencia | `src/tests/soak.ts`   | `ramping-arrival-rate` | 5 it/s sostenidas                         |    5 min | Manual                |
@@ -186,7 +186,7 @@ con `baselines/<tipo>.json`:
 **Crear o actualizar la línea base.** Debe medirse en el mismo tipo de máquina donde se va a
 comparar: un portátil y un runner de GitHub dan números distintos.
 
-1. Ejecuta _Carga programada_ a mano desde Actions con los valores por defecto.
+1. Ejecuta _Carga_ a mano desde Actions con los valores por defecto.
 2. Descarga el artefacto `load-report` y guarda `load-summary.json` como `baselines/load.json`.
    Si lo corriste en local, usa `npm run baseline:update -- --type load`.
 3. Abre un PR con el archivo. En la revisión, la línea base queda registrada como una decisión
@@ -199,11 +199,11 @@ npm run baseline:compare -- --type load --tolerance 0.1    # más estricto
 
 ## CI
 
-| Workflow                                           | Disparador               | Qué hace                                                                                                       |
-| -------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| [`pr-smoke.yml`](.github/workflows/pr-smoke.yml)   | PR, push a main          | ESLint, Prettier, `tsc` y unitarias. Después levanta el SUT y corre el smoke con thresholds (~2 min en total). |
-| [`load.yml`](.github/workflows/load.yml)           | Lunes 09:17 UTC + manual | Carga con SLOs, comparación con la línea base, artefacto y publicación del HTML en Pages.                      |
-| [`on-demand.yml`](.github/workflows/on-demand.yml) | Manual                   | Estrés, picos, soak o carga con `time_scale` / `load_scale` elegidos al lanzarlo (máx. 6 h).                   |
+| Workflow                                           | Disparador      | Qué hace                                                                                                       |
+| -------------------------------------------------- | --------------- | -------------------------------------------------------------------------------------------------------------- |
+| [`pr-smoke.yml`](.github/workflows/pr-smoke.yml)   | PR, push a main | ESLint, Prettier, `tsc` y unitarias. Después levanta el SUT y corre el smoke con thresholds (~2 min en total). |
+| [`load.yml`](.github/workflows/load.yml)           | Manual          | Carga con SLOs, comparación con la línea base, artefacto y publicación del HTML en Pages.                      |
+| [`on-demand.yml`](.github/workflows/on-demand.yml) | Manual          | Estrés, picos, soak o carga con `time_scale` / `load_scale` elegidos al lanzarlo (máx. 6 h).                   |
 
 Para publicar en Pages, actívalo una vez en _Settings → Pages → Source: GitHub Actions_. Para que el
 smoke bloquee los merges, márcalo como check requerido en la protección de la rama `main`.

@@ -1,6 +1,6 @@
 /**
  * Carga: tasa nominal sostenida (ramping-arrival-rate). Valida los SLOs y alimenta la línea base.
- * Corre programada (semanal) o manual.
+ * Se lanza a mano (workflow "Carga").
  */
 import { buildOptions } from '../lib/scenarios.ts';
 import { assertCredentialsAreValid } from '../lib/auth.ts';
