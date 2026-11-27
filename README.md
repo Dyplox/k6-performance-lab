@@ -2,11 +2,14 @@
 
 [![PR · smoke](https://github.com/Dyplox/k6-performance-lab/actions/workflows/pr-smoke.yml/badge.svg)](https://github.com/Dyplox/k6-performance-lab/actions/workflows/pr-smoke.yml)
 [![Carga](https://github.com/Dyplox/k6-performance-lab/actions/workflows/load.yml/badge.svg)](https://github.com/Dyplox/k6-performance-lab/actions/workflows/load.yml)
+[![Reporte en vivo](https://img.shields.io/badge/reporte-GitHub%20Pages-0969da)](https://dyplox.github.io/k6-performance-lab/)
 
 Laboratorio de pruebas de rendimiento con **k6 + TypeScript** sobre la API de reservas
 [Restful Booker](https://restful-booker.herokuapp.com/apidoc/index.html), que corre en Docker junto
 a Prometheus y Grafana. Los SLOs están escritos como código: si una métrica se sale del objetivo, el
 pipeline falla.
+
+**Reporte en vivo:** [último reporte de carga de `main` en GitHub Pages](https://dyplox.github.io/k6-performance-lab/)
 
 **Qué muestra este repositorio**
 
@@ -23,7 +26,7 @@ pipeline falla.
   El dashboard de Grafana está provisionado como código (JSON en el repo). cAdvisor muestra la CPU
   y la memoria del contenedor bajo prueba.
 - Reportes propios con `handleSummary`: consola, Markdown para la pestaña _Summary_ de Actions,
-  JSON para la línea base y HTML autocontenido publicado en GitHub Pages.
+  JSON para la línea base y HTML autocontenido publicado en [GitHub Pages](https://dyplox.github.io/k6-performance-lab/).
 - Calidad del propio código de pruebas: TypeScript estricto, ESLint, Prettier, actions fijadas por
   SHA y Dependabot.
 
