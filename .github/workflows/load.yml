@@ -1,15 +1,14 @@
-name: Carga programada
+name: Carga
 
-# Prueba de carga semanal (y manual) contra el SUT en Docker:
+# Prueba de carga manual contra el SUT en Docker:
 #   1. thresholds de SLO (k6 sale con 99 si se incumplen)
 #   2. comparación con baselines/load.json para detectar regresiones de latencia
 #   3. reporte HTML como artefacto y, en main, publicado en GitHub Pages
-# Una vez por semana basta para un repo de portafolio y no consume minutos de más
-# (en repos públicos los runners estándar de GitHub Actions son gratuitos).
 on:
-  schedule:
-    # Lunes 09:17 UTC (04:17 en Colombia). Minuto no redondo: a las :00 hay cola en los runners.
-    - cron: '17 9 * * 1'
+  # La ejecución semanal programada está desactivada: el proyecto no está en producción.
+  # Para reactivarla, añadir aquí:
+  #   schedule:
+  #     - cron: '17 9 * * 1'   # lunes 09:17 UTC (minuto no redondo: a las :00 hay cola)
   workflow_dispatch:
     inputs:
       time_scale:
