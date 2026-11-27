@@ -1123,7 +1123,8 @@
                 "value": null
               }
             ]
-          }
+          },
+          "noValue": "Sin errores"
         },
         "overrides": []
       }
@@ -1194,7 +1195,9 @@
                 "value": null
               }
             ]
-          }
+          },
+          "min": 0,
+          "max": 1
         },
         "overrides": []
       }
@@ -1282,7 +1285,8 @@
                 "value": 1
               }
             ]
-          }
+          },
+          "noValue": "Sin datos: levanta el perfil cadvisor (host Linux)"
         },
         "overrides": []
       }
@@ -1357,7 +1361,8 @@
                 "value": 536870912
               }
             ]
-          }
+          },
+          "noValue": "Sin datos: levanta el perfil cadvisor (host Linux)"
         },
         "overrides": []
       }
