@@ -9,6 +9,8 @@ Laboratorio de pruebas de rendimiento con **k6 + TypeScript** sobre la API de re
 a Prometheus y Grafana. Los SLOs están escritos como código: si una métrica se sale del objetivo, el
 pipeline falla.
 
+> 🇬🇧 **English summary:** Performance testing lab with **k6 + TypeScript** against the Restful Booker API, running in Docker with **Prometheus** and **Grafana**. It includes smoke, load, stress, spike and soak tests on an open model (`ramping-arrival-rate`), SLOs written as k6 thresholds that fail the pipeline, baseline comparison to catch latency regressions, and a self-contained HTML report [published on GitHub Pages](https://dyplox.github.io/k6-performance-lab/). The rest of this README is in Spanish.
+
 **Reporte en vivo:** [último reporte de carga de `main` en GitHub Pages](https://dyplox.github.io/k6-performance-lab/)
 
 **Qué muestra este repositorio**
